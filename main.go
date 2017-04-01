@@ -14,7 +14,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
-	"time"
 )
 
 type SlackResponse struct {
@@ -72,16 +71,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Scale minimum delay to a second
-	minDelay := parrotGIF.Delay[0]
-	for i := 1; i < len(parrotGIF.Delay); i++ {
-		minDelay = min(minDelay, parrotGIF.Delay[i])
-	}
-	adjustedDelays := make([]time.Duration, len(parrotGIF.Delay))
-	for i, d := range parrotGIF.Delay {
-		adjustedDelays[i] = time.Duration(float64(time.Second) * float64(d) / float64(minDelay))
-	}
-
 	// convert images to pngs
 	convertedImages := make([][]byte, len(parrotGIF.Image))
 	for i, img := range parrotGIF.Image {
@@ -100,7 +89,6 @@ func main() {
 
 	i := 0
 	for {
-		time.Sleep(adjustedDelays[i])
 		err := setPhoto(slackToken, convertedImages[i])
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error: %s\n", err)
