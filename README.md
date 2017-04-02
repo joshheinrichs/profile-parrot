@@ -1,4 +1,4 @@
-# profile parrot [![Travis Ci Status](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)
+# profile parrot [![Travis Ci Status](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)](https://travis-ci.org/joshheinrichs/profile-parrot)
 Bring the party to your Slack photo!
 
 ## Installing 
