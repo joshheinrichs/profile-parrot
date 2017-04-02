@@ -1,0 +1,35 @@
+version: 1.0.0.{build}
+
+platform: x64
+
+branches:
+  only:
+    - master
+
+clone_folder: c:\gopath\src\github.com\joshheinrichs\profile-parrot
+
+environment:
+  GOPATH: c:\gopath
+
+install:
+  - go get -u github.com/jteeuwen/go-bindata/...
+
+build_script:
+  - go generate 
+  - go build
+
+atrifacts:
+  - path: profile-parrot
+    name: binary
+
+deploy:
+  release: profile-parrot-$(appveyor_build_version)
+  provider: GitHub
+  auth_token:
+    secure: YnmWu6vIK06/rB/93x8hM/9ux8y3nuuWauJ2/6xBC+Q2K41O8DVmaTyxZRG+biCC
+  artifact: binary
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true
