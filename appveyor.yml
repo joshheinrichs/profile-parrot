@@ -12,6 +12,7 @@ environment:
   GOPATH: c:\gopath
 
 install:
+  - set PATH=%GOPATH%\bin;c:\go\bin;%PATH%
   - go get -u github.com/jteeuwen/go-bindata/...
 
 build_script:
