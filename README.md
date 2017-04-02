@@ -12,7 +12,7 @@ $ go generate github.com/joshheinrichs/profile-parrot
 $ go install github.com/joshheinrichs/profile-parrot
 ```
 
-Requires [bindata](github.com/jteeuwen/go-bindata)
+Requires [bindata](github.com/jteeuwen/go-bindata) to build.
 
 ## Usage
 
