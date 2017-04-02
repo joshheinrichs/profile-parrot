@@ -1,8 +1,5 @@
-# profile parrot 
+# profile parrot [![Travis Ci Status](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)
 Bring the party to your Slack photo!
-
-[![Travis Ci Status](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)
-[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/a2bhg1b1upsa4wxg/branch/master?svg=true)](https://ci.appveyor.com/project/joshheinrichs/profile-parrot/branch/master)
 
 ## Installing 
 
