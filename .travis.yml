@@ -3,8 +3,10 @@ language: go
 before_install:
   - go get github.com/jteeuwen/go-bindata/...
 
-script:
+install:
   - go generate
+
+script:
   - go build
 
 deploy:
