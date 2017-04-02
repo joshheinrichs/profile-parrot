@@ -1,4 +1,4 @@
-version: 1.0.0.{build}
+version: 1.0.1
 
 platform: x64
 
@@ -17,14 +17,13 @@ install:
 
 build_script:
   - go generate 
-  - go build
+  - go build -o profile-parrot.exe
 
 artifacts:
-  - path: profile-parrot
+  - path: profile-parrot.exe
     name: binary
 
 deploy:
-  release: profile-parrot-$(appveyor_build_version)
   provider: GitHub
   auth_token:
     secure: YnmWu6vIK06/rB/93x8hM/9ux8y3nuuWauJ2/6xBC+Q2K41O8DVmaTyxZRG+biCC
@@ -32,5 +31,4 @@ deploy:
   draft: false
   prerelease: false
   on:
-    branch: master
     appveyor_repo_tag: true
