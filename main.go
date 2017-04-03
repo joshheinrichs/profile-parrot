@@ -16,16 +16,9 @@ import (
 	"os"
 )
 
-type SlackResponse struct {
+type slackResponse struct {
 	OK    bool   `json:"ok"`
 	Error string `json:"error"`
-}
-
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
 }
 
 func setPhoto(token string, image []byte) error {
@@ -42,19 +35,21 @@ func setPhoto(token string, image []byte) error {
 	if err != nil {
 		return err
 	}
-	var slackResponse SlackResponse
+	var slackResp slackResponse
 	dec := json.NewDecoder(resp.Body)
-	dec.Decode(&slackResponse)
-	if !slackResponse.OK {
-		return fmt.Errorf("slack: %s", slackResponse.Error)
+	dec.Decode(&slackResp)
+	if !slackResp.OK {
+		return fmt.Errorf("slack: %s", slackResp.Error)
 	}
 	return nil
 }
 
 func main() {
-	var slackToken string
+	var slackToken, parrot string
 	flag.StringVar(&slackToken, "slack-token", "",
 		"A Slack API token, generatable at https://api.slack.com/custom-integrations/legacy-tokens")
+	flag.StringVar(&parrot, "parrot", "",
+		"Path to a parrot gif to use. If not provided, will default to the original party parrot.")
 	flag.Parse()
 	if slackToken == "" {
 		fmt.Fprintf(os.Stderr, "flag is required: -slack-token\n")
@@ -64,8 +59,19 @@ func main() {
 
 	fmt.Println("profile parrot is running!")
 
-	parrotBytes := MustAsset("assets/parrot.gif")
-	parrotGIF, err := gif.DecodeAll(bytes.NewReader(parrotBytes))
+	var reader io.Reader
+	if parrot == "" {
+		parrotBytes := MustAsset("assets/parrot.gif")
+		reader = bytes.NewReader(parrotBytes)
+	} else {
+		f, err := os.Open(parrot)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err)
+			os.Exit(1)
+		}
+		reader = f
+	}
+	parrotGIF, err := gif.DecodeAll(reader)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
