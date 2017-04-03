@@ -16,7 +16,7 @@ Requires [bindata](github.com/jteeuwen/go-bindata) to build.
 ## Usage
 
 ```bash
-$ profile-parrot -slack-token SLACK_TOKEN [-parrot PARROT_GIF]
+$ profile-parrot -slack-token SLACK_TOKEN [-parrot PARROT_GIF] [-h]
 ```
 
 Slack tokens can be generated at https://api.slack.com/custom-integrations/legacy-tokens
