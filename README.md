@@ -1,6 +1,8 @@
 # profile parrot [![Travis Ci Status](https://travis-ci.org/joshheinrichs/profile-parrot.svg?branch=master)](https://travis-ci.org/joshheinrichs/profile-parrot)
 Bring the party to your Slack photo!
 
+[![Demo](docs/demo.gif)](docs/demo.gif)
+
 ## Installing 
 
 Either grab a build on the [releases page](github.com/joshheinrichs/profile-parrot/releases) or run:
